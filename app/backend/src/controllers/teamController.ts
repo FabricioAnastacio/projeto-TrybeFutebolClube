@@ -9,6 +9,14 @@ export default class TeamController {
 
   public async getAllTeams(req: Request, res: Response): Promise<Response> {
     const { status, data } = await this.serviceTeam.findAll();
+
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  public async getOneTeam(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const { status, data } = await this.serviceTeam.findById(Number(id));
+
     return res.status(mapStatusHTTP(status)).json(data);
   }
 }

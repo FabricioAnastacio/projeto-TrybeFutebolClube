@@ -6,7 +6,7 @@ import {
   CreationOptional,
 } from 'sequelize';
 import db from '.';
-// import MatcheModel from './MatcheModel';
+import MatcheModel from './MatcheModel';
 
 class TeamModel extends Model<InferAttributes<TeamModel>,
 InferCreationAttributes<TeamModel>> {
@@ -38,6 +38,6 @@ TeamModel.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-// MatcheModel.belongsTo(TeamModel, { foreignKey: 'id', as: 'idTeam' });
+MatcheModel.belongsTo(TeamModel, { foreignKey: 'id', as: 'idTeam' });
 
 export default TeamModel;

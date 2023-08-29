@@ -16,6 +16,11 @@ const mockTeams = [
   },
 ]
 
+const mockTeamID = {
+  team_name: 'Cruzeiro',
+};
+
 export default {
   mockTeams,
+  mockTeamID,
 }

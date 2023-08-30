@@ -1,7 +1,6 @@
 import { Secret, SignOptions, sign, verify } from 'jsonwebtoken';
 
-type TokenPayload = {
-  id: string | number,
+export type TokenPayload = {
   email: string,
 };
 
@@ -15,11 +14,12 @@ export default class JWT {
     return sign(payload, JWT.secret, JWT.jwtConfig);
   }
 
-  static getPayload(token: string): TokenPayload | string {
+  static getPayload(bearerToken: string): TokenPayload | string {
     try {
+      const token = bearerToken.split(' ')[1];
       return verify(token, JWT.secret) as TokenPayload;
     } catch (e) {
-      return 'Token must be a valid Token';
+      return 'Token must be a valid token';
     }
   }
 }

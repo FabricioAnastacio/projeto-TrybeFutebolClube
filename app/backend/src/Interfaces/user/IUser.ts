@@ -5,6 +5,10 @@ export interface ILoginValidation {
   password: string,
 }
 
+export interface ILoginRole {
+  role: string,
+}
+
 export interface ILogin {
   findByEmail(email: string): Promise<IUser | null>,
 }

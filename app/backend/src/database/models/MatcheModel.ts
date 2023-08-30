@@ -6,6 +6,7 @@ import {
   Model,
 } from 'sequelize';
 import db from '.';
+import TeamModel from './TeamModel';
 
 class MatcheModel extends Model<InferAttributes<MatcheModel>,
 InferCreationAttributes<MatcheModel>> {
@@ -32,10 +33,6 @@ MatcheModel.init({
   homeTeamId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'teams',
-      key: 'idTeam',
-    },
   },
   homeTeamGoals: {
     type: DataTypes.INTEGER,
@@ -44,10 +41,6 @@ MatcheModel.init({
   awayTeamId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'trybe_teams',
-      key: 'idTeam',
-    },
   },
   awayTeamGoals: {
     type: DataTypes.INTEGER,
@@ -59,9 +52,13 @@ MatcheModel.init({
   },
 }, {
   sequelize: db,
-  modelName: 'trybe_matches',
+  modelName: 'matches',
   timestamps: false,
   underscored: true,
 });
+
+MatcheModel.belongsTo(TeamModel, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+
+MatcheModel.belongsTo(TeamModel, { foreignKey: 'awayTeamId', as: 'awayTeam' });
 
 export default MatcheModel;

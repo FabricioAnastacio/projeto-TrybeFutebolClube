@@ -1,9 +1,16 @@
 import TeamModel from '../database/models/TeamModel';
 import MatcheModel from '../database/models/MatcheModel';
-import { IInProgressFunction, IReturnAllandOne } from '../Interfaces/ICRUDModel';
 import IMatche from '../Interfaces/Matche';
+import {
+  IInProgressFunction,
+  IReturnAllandOne,
+  IUpdateStatusMatche,
+} from '../Interfaces/ICRUDModel';
 
-class MatchesModel implements IReturnAllandOne<IMatche>, IInProgressFunction<IMatche> {
+class MatchesModel implements
+IReturnAllandOne<IMatche>,
+IInProgressFunction<IMatche>,
+IUpdateStatusMatche {
   private model = MatcheModel;
 
   async findAll(): Promise<IMatche[]> {
@@ -47,6 +54,15 @@ class MatchesModel implements IReturnAllandOne<IMatche>, IInProgressFunction<IMa
     });
 
     return !matches ? null : matches;
+  }
+
+  async updateStatus(id: string): Promise<number[]> {
+    const newMatche = await this.model.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+
+    return newMatche;
   }
 }
 

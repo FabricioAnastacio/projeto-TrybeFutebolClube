@@ -8,6 +8,13 @@ export type ServiceError = {
   },
 };
 
+export type ServiceSuccessResponse = {
+  status: 'SUCCESSFUL',
+  data: {
+    message: string,
+  },
+};
+
 export type ServiceValidateError = {
   status: ServiceErrorType,
   message: string,
@@ -18,4 +25,4 @@ export type ServiceSuccess<T> = {
   data: T
 };
 
-export type ServiceRespose<T> = ServiceSuccess<T> | ServiceError;
+export type ServiceRespose<T> = ServiceSuccess<T> | ServiceError | ServiceSuccessResponse;

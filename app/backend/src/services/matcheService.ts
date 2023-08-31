@@ -18,6 +18,12 @@ class MatcheService {
 
     return { status: 'SUCCESSFUL', data: matcheProgress };
   }
+
+  public async updateStatusMatche(id: string): Promise<ServiceRespose<void>> {
+    await this.matcheModel.updateStatus(id);
+
+    return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
 }
 
 export default MatcheService;

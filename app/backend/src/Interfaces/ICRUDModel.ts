@@ -1,3 +1,7 @@
+export interface IUpdateStatusMatche {
+  updateStatus(id: string): Promise<number[]>
+}
+
 export interface IInProgressFunction<T> {
   findAllInProgress(inProgress: boolean): Promise<T[] | null>
 }

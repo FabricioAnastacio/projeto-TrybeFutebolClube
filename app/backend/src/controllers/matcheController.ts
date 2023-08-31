@@ -20,6 +20,13 @@ class MatcheController {
 
     return res.status(mapStatusHTTP(status)).json(data);
   }
+
+  public async setStatusMatche(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const { status, data } = await this.serviceMatches.updateStatusMatche(id);
+
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
 }
 
 export default MatcheController;

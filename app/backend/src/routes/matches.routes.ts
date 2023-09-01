@@ -8,6 +8,8 @@ const matchesRouter = Router();
 
 matchesRouter.get('/', (req, res) => matches.getAllMatches(req, res));
 
+matchesRouter.post('/', Validations.validateJWT, (req, res) => matches.setNewMatche(req, res));
+
 matchesRouter.patch(
   '/:id',
   Validations.validateJWT,

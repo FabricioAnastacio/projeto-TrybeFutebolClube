@@ -1,6 +1,6 @@
 import TeamModel from '../database/models/TeamModel';
 import MatcheModel from '../database/models/MatcheModel';
-import IMatche, { IGoals } from '../Interfaces/Matche';
+import IMatche, { IGoals, INewMatche } from '../Interfaces/Matche';
 import {
   IInProgressFunction,
   IReturnAllandOne,
@@ -91,6 +91,12 @@ IUpdateGoalsMatche<IMatche> {
     const newMatche = await this.findById(id);
 
     return newMatche;
+  }
+
+  async create(data: INewMatche): Promise<IMatche | null> {
+    const { dataValues } = await this.model.create(data);
+
+    return dataValues;
   }
 }
 

@@ -7,6 +7,7 @@ export default interface IMatche extends IGoals {
   id: number,
   homeTeamId: number,
   awayTeamId: number,
-  awayTeamGoals: number,
   inProgress: boolean,
 }
+
+export type INewMatche = Omit<IMatche, 'id'>;

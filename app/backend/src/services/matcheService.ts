@@ -1,4 +1,4 @@
-import { ServiceRespose } from '../Interfaces/serviceResponse';
+import { ServiceError, ServiceRespose } from '../Interfaces/serviceResponse';
 import IMatche, { IGoals, INewMatche } from '../Interfaces/Matche';
 import MatchesModel from '../models/matcheModel';
 
@@ -6,6 +6,28 @@ class MatcheService {
   constructor(
     private matcheModel = new MatchesModel(),
   ) {}
+
+  private async verifyNewMatcher(awayTeamId: number, homeTeamId: number):
+  Promise<ServiceError | null> {
+    if (awayTeamId === homeTeamId) {
+      return { status: 'INVALID_SIZE',
+        data: {
+          message: 'It is not possible to create a match with two equal teams',
+        },
+      };
+    }
+
+    const teamHome = await this.matcheModel.findById(homeTeamId);
+    const teamAway = await this.matcheModel.findById(awayTeamId);
+    if (!teamHome || !teamAway) {
+      return { status: 'NOT_FOUND',
+        data: {
+          message: 'There is no team with such id!',
+        },
+      };
+    }
+    return null;
+  }
 
   public async findAll(): Promise<ServiceRespose<IMatche[]>> {
     const matches = await this.matcheModel.findAll();
@@ -34,6 +56,9 @@ class MatcheService {
 
   public async createMatche(data: INewMatche): Promise<ServiceRespose<IMatche>> {
     const matche = { ...data, inProgress: true };
+    const verificNemMatche = await this.verifyNewMatcher(data.homeTeamId, data.awayTeamId);
+    if (verificNemMatche) return { status: verificNemMatche.status, data: verificNemMatche.data };
+
     const newMatche = await this.matcheModel.create(matche);
     if (!newMatche) return { status: 'INVALID_VALUE', data: { message: '' } };
 

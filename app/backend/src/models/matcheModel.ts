@@ -33,7 +33,7 @@ IUpdateGoalsMatche<IMatche> {
     return allMatches;
   }
 
-  async findById(id: string): Promise<IMatche | null> {
+  async findById(id: number | string): Promise<IMatche | null> {
     const oneMatche = await this.model.findByPk(id, {
       include: [
         {

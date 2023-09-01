@@ -14,5 +14,5 @@ export interface IInProgressFunction<T> {
 
 export interface IReturnAllandOne<T> {
   findAll(): Promise<T[]>
-  findById(id: string): Promise<T | null>
+  findById(id: string | number): Promise<T | null>
 }

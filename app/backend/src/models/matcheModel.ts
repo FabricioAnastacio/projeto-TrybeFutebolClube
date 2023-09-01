@@ -48,7 +48,7 @@ IUpdateGoalsMatche<IMatche> {
         },
       ],
     });
-    return !oneMatche ? null : oneMatche;
+    return oneMatche;
   }
 
   async findAllInProgress(inProgress: boolean): Promise<IMatche[] | null> {
@@ -68,7 +68,7 @@ IUpdateGoalsMatche<IMatche> {
       ],
     });
 
-    return !matches ? null : matches;
+    return matches;
   }
 
   async updateStatus(id: string): Promise<number[]> {

@@ -15,7 +15,7 @@ export default class TeamController {
 
   public async getOneTeam(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const { status, data } = await this.serviceTeam.findById(Number(id));
+    const { status, data } = await this.serviceTeam.findById(id);
 
     return res.status(mapStatusHTTP(status)).json(data);
   }

@@ -7,6 +7,13 @@ const matches = new MatcheController();
 const matchesRouter = Router();
 
 matchesRouter.get('/', (req, res) => matches.getAllMatches(req, res));
+
+matchesRouter.patch(
+  '/:id',
+  Validations.validateJWT,
+  (req, res) => matches.setGoalsMatche(req, res),
+);
+
 matchesRouter.patch(
   '/:id/finish',
   Validations.validateJWT,

@@ -13,7 +13,7 @@ class TeamService {
     return { status: 'SUCCESSFUL', data: allTeams };
   }
 
-  public async findById(id: number): Promise<ServiceRespose<ITeam>> {
+  public async findById(id: string): Promise<ServiceRespose<ITeam>> {
     const team = await this.teamModel.findById(id);
     if (!team) return { status: 'NOT_FOUND', data: { message: 'User not found' } };
 

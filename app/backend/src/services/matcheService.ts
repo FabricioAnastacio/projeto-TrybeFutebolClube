@@ -1,5 +1,5 @@
 import { ServiceRespose } from '../Interfaces/serviceResponse';
-import IMatche from '../Interfaces/Matche';
+import IMatche, { IGoals } from '../Interfaces/Matche';
 import MatchesModel from '../models/matcheModel';
 
 class MatcheService {
@@ -23,6 +23,13 @@ class MatcheService {
     await this.matcheModel.updateStatus(id);
 
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async updateGoalsMetche(id: string, data: IGoals): Promise<ServiceRespose<IMatche>> {
+    const responseNewMatche = await this.matcheModel.updateGoalsMatch(id, data);
+    if (!responseNewMatche) return { status: 'NOT_FOUND', data: { message: 'Matche not found' } };
+
+    return { status: 'SUCCESSFUL', data: responseNewMatche };
   }
 }
 

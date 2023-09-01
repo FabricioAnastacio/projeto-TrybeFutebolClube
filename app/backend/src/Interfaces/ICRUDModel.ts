@@ -1,5 +1,11 @@
+import { IGoals } from './Matche';
+
 export interface IUpdateStatusMatche {
   updateStatus(id: string): Promise<number[]>
+}
+
+export interface IUpdateGoalsMatche<T> {
+  updateGoalsMatch(id: string, data: IGoals): Promise<T | null>
 }
 
 export interface IInProgressFunction<T> {
@@ -8,5 +14,5 @@ export interface IInProgressFunction<T> {
 
 export interface IReturnAllandOne<T> {
   findAll(): Promise<T[]>
-  findById(id: number): Promise<T | null>
+  findById(id: string): Promise<T | null>
 }

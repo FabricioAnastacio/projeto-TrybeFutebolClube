@@ -1,16 +1,18 @@
 import TeamModel from '../database/models/TeamModel';
 import MatcheModel from '../database/models/MatcheModel';
-import IMatche from '../Interfaces/Matche';
+import IMatche, { IGoals } from '../Interfaces/Matche';
 import {
   IInProgressFunction,
   IReturnAllandOne,
+  IUpdateGoalsMatche,
   IUpdateStatusMatche,
 } from '../Interfaces/ICRUDModel';
 
 class MatchesModel implements
 IReturnAllandOne<IMatche>,
 IInProgressFunction<IMatche>,
-IUpdateStatusMatche {
+IUpdateStatusMatche,
+IUpdateGoalsMatche<IMatche> {
   private model = MatcheModel;
 
   async findAll(): Promise<IMatche[]> {
@@ -31,8 +33,21 @@ IUpdateStatusMatche {
     return allMatches;
   }
 
-  async findById(id: number): Promise<IMatche | null> {
-    const oneMatche = await this.model.findByPk(id);
+  async findById(id: string): Promise<IMatche | null> {
+    const oneMatche = await this.model.findByPk(id, {
+      include: [
+        {
+          model: TeamModel,
+          as: 'homeTeam',
+          attributes: ['teamName'],
+        },
+        {
+          model: TeamModel,
+          as: 'awayTeam',
+          attributes: ['teamName'],
+        },
+      ],
+    });
     return !oneMatche ? null : oneMatche;
   }
 
@@ -57,10 +72,23 @@ IUpdateStatusMatche {
   }
 
   async updateStatus(id: string): Promise<number[]> {
-    const newMatche = await this.model.update(
+    const dataRespose = await this.model.update(
       { inProgress: false },
       { where: { id } },
     );
+
+    return dataRespose;
+  }
+
+  async updateGoalsMatch(id: string, data: IGoals): Promise<IMatche | null> {
+    const { awayTeamGoals, homeTeamGoals } = data;
+
+    await this.model.update(
+      { awayTeamGoals, homeTeamGoals },
+      { where: { id } },
+    );
+
+    const newMatche = await this.findById(id);
 
     return newMatche;
   }

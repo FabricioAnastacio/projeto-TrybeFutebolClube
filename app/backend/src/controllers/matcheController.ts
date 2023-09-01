@@ -27,6 +27,15 @@ class MatcheController {
 
     return res.status(mapStatusHTTP(status)).json(data);
   }
+
+  public async setGoalsMatche(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const dataGoals = req.body;
+
+    const { status, data } = await this.serviceMatches.updateGoalsMetche(id, dataGoals);
+
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
 }
 
 export default MatcheController;

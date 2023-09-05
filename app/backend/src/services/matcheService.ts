@@ -36,7 +36,6 @@ class MatcheService {
 
   public async findAllProgress(inProgress: boolean): Promise<ServiceRespose<IMatche[]>> {
     const matcheProgress = await this.matcheModel.findAllInProgress(inProgress);
-    if (!matcheProgress) return { status: 'NOT_FOUND', data: { message: 'Matche not found' } };
 
     return { status: 'SUCCESSFUL', data: matcheProgress };
   }

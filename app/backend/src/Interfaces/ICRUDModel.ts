@@ -9,7 +9,7 @@ export interface IUpdateGoalsMatche<T> {
 }
 
 export interface IInProgressFunction<T> {
-  findAllInProgress(inProgress: boolean): Promise<T[] | null>
+  findAllInProgress(inProgress: boolean): Promise<T[]>
 }
 
 export interface IReturnAllandOne<T> {

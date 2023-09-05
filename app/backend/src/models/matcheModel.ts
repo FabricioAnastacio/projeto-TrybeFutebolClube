@@ -51,7 +51,7 @@ IUpdateGoalsMatche<IMatche> {
     return oneMatche;
   }
 
-  async findAllInProgress(inProgress: boolean): Promise<IMatche[] | null> {
+  async findAllInProgress(inProgress: boolean): Promise<IMatche[]> {
     const matches = await this.model.findAll({
       where: { inProgress },
       include: [

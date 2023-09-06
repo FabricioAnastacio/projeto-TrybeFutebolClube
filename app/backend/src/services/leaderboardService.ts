@@ -8,8 +8,13 @@ class Leaderboard {
   ) {
   }
 
-  public async getLeaderboards(): Promise<ServiceRespose<ILeaderboard[]>> {
-    const leaderboard = await this.leaderboardModel.getAllLeaderboard();
+  public async findAllLeaderboardsHome(): Promise<ServiceRespose<ILeaderboard[]>> {
+    const leaderboard = await this.leaderboardModel.getAllLeaderboardHome();
+    return { status: 'SUCCESSFUL', data: leaderboard };
+  }
+
+  public async findAllLeaderboardsAway(): Promise<ServiceRespose<ILeaderboard[]>> {
+    const leaderboard = await this.leaderboardModel.getAllLeaderboardAway();
     return { status: 'SUCCESSFUL', data: leaderboard };
   }
 }

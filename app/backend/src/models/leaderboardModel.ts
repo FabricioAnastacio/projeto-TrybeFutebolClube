@@ -1,12 +1,18 @@
 import sequelize from '../database/models';
 import ILeaderboard from '../Interfaces/Leaderboard';
-import queryLeaderboard from '../utils/queryLeaderboard';
+import { queryLeaderboardHome, queryLeaderboardAway } from '../utils/queryLeaderboard';
 
 class LeaderboardModel {
   constructor(private db = sequelize) {}
 
-  public async getAllLeaderboard(): Promise<ILeaderboard[]> {
-    const [leaderboard] = await this.db.query(queryLeaderboard);
+  public async getAllLeaderboardHome(): Promise<ILeaderboard[]> {
+    const [leaderboard] = await this.db.query(queryLeaderboardHome);
+
+    return leaderboard as unknown as ILeaderboard[];
+  }
+
+  public async getAllLeaderboardAway(): Promise<ILeaderboard[]> {
+    const [leaderboard] = await this.db.query(queryLeaderboardAway);
 
     return leaderboard as unknown as ILeaderboard[];
   }

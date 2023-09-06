@@ -12,7 +12,7 @@ class TeamsModel implements IReturnAllandOne<ITeam> {
 
   async findById(id: string | number): Promise<ITeam | null> {
     const oneTeam = await this.model.findByPk(id);
-    return !oneTeam ? null : oneTeam;
+    return oneTeam;
   }
 }
 

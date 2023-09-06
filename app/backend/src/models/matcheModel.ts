@@ -1,71 +1,38 @@
 import TeamModel from '../database/models/TeamModel';
 import MatcheModel from '../database/models/MatcheModel';
 import IMatche, { IGoals, INewMatche } from '../Interfaces/Matche';
-import {
-  IInProgressFunction,
-  IReturnAllandOne,
-  IUpdateGoalsMatche,
-  IUpdateStatusMatche,
-} from '../Interfaces/ICRUDModel';
+import { IMatcheModel } from '../Interfaces/ICRUDModel';
 
-class MatchesModel implements
-IReturnAllandOne<IMatche>,
-IInProgressFunction<IMatche>,
-IUpdateStatusMatche,
-IUpdateGoalsMatche<IMatche> {
+const include = [
+  {
+    model: TeamModel,
+    as: 'homeTeam',
+    attributes: ['teamName'],
+  },
+  {
+    model: TeamModel,
+    as: 'awayTeam',
+    attributes: ['teamName'],
+  },
+];
+
+class MatchesModel implements IMatcheModel<IMatche> {
   private model = MatcheModel;
 
   async findAll(): Promise<IMatche[]> {
-    const allMatches = await this.model.findAll({
-      include: [
-        {
-          model: TeamModel,
-          as: 'homeTeam',
-          attributes: ['teamName'],
-        },
-        {
-          model: TeamModel,
-          as: 'awayTeam',
-          attributes: ['teamName'],
-        },
-      ],
-    });
+    const allMatches = await this.model.findAll({ include });
     return allMatches;
   }
 
   async findById(id: number | string): Promise<IMatche | null> {
-    const oneMatche = await this.model.findByPk(id, {
-      include: [
-        {
-          model: TeamModel,
-          as: 'homeTeam',
-          attributes: ['teamName'],
-        },
-        {
-          model: TeamModel,
-          as: 'awayTeam',
-          attributes: ['teamName'],
-        },
-      ],
-    });
+    const oneMatche = await this.model.findByPk(id, { include });
     return oneMatche;
   }
 
   async findAllInProgress(inProgress: boolean): Promise<IMatche[]> {
     const matches = await this.model.findAll({
       where: { inProgress },
-      include: [
-        {
-          model: TeamModel,
-          as: 'homeTeam',
-          attributes: ['teamName'],
-        },
-        {
-          model: TeamModel,
-          as: 'awayTeam',
-          attributes: ['teamName'],
-        },
-      ],
+      include,
     });
 
     return matches;
@@ -93,7 +60,7 @@ IUpdateGoalsMatche<IMatche> {
     return newMatche;
   }
 
-  async create(data: INewMatche): Promise<IMatche | null> {
+  async create(data: INewMatche): Promise<IMatche> {
     const { dataValues } = await this.model.create(data);
 
     return dataValues;

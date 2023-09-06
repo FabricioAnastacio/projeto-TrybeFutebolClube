@@ -1,5 +1,5 @@
 import { ServiceError } from '../../Interfaces/serviceResponse';
-import { ILoginValidation } from '../../Interfaces/user/IUser';
+import { ILoginValidation } from '../../Interfaces/ILogin';
 
 const emailValid = /^[a-z0-9]+@[a-z0-9]+\.[a-z]/i;
 

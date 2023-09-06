@@ -1,11 +1,12 @@
+import { ILeaderboardModel } from '../Interfaces/ICRUDModel';
 import sequelize from '../database/models';
-import ILeaderboard from '../Interfaces/Leaderboard';
+import ILeaderboard from '../Interfaces/ILeaderboard';
 import {
   queryLeaderboardHome,
   queryLeaderboardAway,
 } from '../utils/queryLeaderboard';
 
-class LeaderboardModel {
+class LeaderboardModel implements ILeaderboardModel {
   constructor(private db = sequelize) {}
 
   public async getAllLeaderboardHome(): Promise<ILeaderboard[]> {
@@ -19,12 +20,6 @@ class LeaderboardModel {
 
     return leaderboard as unknown as ILeaderboard[];
   }
-
-  // public async getAllLeaderboard(): Promise<ILeaderboard[]> {
-  //   const [leaderboard] = await this.db.query(queryLeaderboardGeneral);
-
-  //   return leaderboard as unknown as ILeaderboard[];
-  // }
 }
 
 export default LeaderboardModel;

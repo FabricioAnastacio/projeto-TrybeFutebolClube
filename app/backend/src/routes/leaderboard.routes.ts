@@ -1,5 +1,4 @@
 import { Router } from 'express';
-// import Validations from '../middleware/validations';
 import LeaderboardController from '../controllers/leaderboardController';
 
 const leaderboard = new LeaderboardController();

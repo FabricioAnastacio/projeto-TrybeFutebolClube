@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import ModelUser from '../models/userModel';
-import { ILogin, ILoginRole, ILoginValidation } from '../Interfaces/user/IUser';
+import { ILogin, ILoginRole, ILoginValidation } from '../Interfaces/ILogin';
 import { ServiceRespose } from '../Interfaces/serviceResponse';
 import IToken from '../Interfaces/IToken';
 import JWT, { TokenPayload } from '../utils/JWT';

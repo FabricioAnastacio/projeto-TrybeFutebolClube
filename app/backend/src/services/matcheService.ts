@@ -1,10 +1,11 @@
 import { ServiceError, ServiceRespose } from '../Interfaces/serviceResponse';
 import IMatche, { IGoals, INewMatche } from '../Interfaces/Matche';
 import MatchesModel from '../models/matcheModel';
+import { IMatcheModel } from '../Interfaces/ICRUDModel';
 
 class MatcheService {
   constructor(
-    private matcheModel = new MatchesModel(),
+    private matcheModel: IMatcheModel<IMatche> = new MatchesModel(),
   ) {}
 
   private async verifyNewMatcher(awayTeamId: number, homeTeamId: number):
@@ -59,7 +60,6 @@ class MatcheService {
     if (verificNemMatche) return { status: verificNemMatche.status, data: verificNemMatche.data };
 
     const newMatche = await this.matcheModel.create(matche);
-    if (!newMatche) return { status: 'INVALID_VALUE', data: { message: '' } };
 
     return { status: 'CREATED', data: newMatche };
   }

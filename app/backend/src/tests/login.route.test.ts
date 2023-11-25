@@ -117,7 +117,7 @@ describe('Login/role :', () => {
 
     const { status, body } = await chai.request(app).get('/login/role')
     .send({ payload: { email: validUser.email } })
-    .set('authorization', 'token.magia');;
+    .set('authorization', 'token.magia');
 
     expect(status).to.equal(200);
     expect(body).to.deep.equal({ role: returnValidUser.role }); 

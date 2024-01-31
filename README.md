@@ -1,31 +1,5 @@
-# Projeto Trybe Futebol Clube
-
-Esse é um projeto FullStack desenvolvido utilizando a linguagem TypeScript em conjunto com JavaScript.
-
-- Em `BackEnd` foi utilizado `TypeScript`. Minha participação esta composta 100% na pasta _app/backend/src_, os demais arquivos foram desenvovidos pela Trybe.
-- Em `FrontEnd` foi utilizado `JavaScript` e todo o seu desenvolvimento foi feito pela Trybe.
-- Apenas o arquivo `Dockerfile` em ambas foram desenvolvidos por mim. 
-
-
-O aplicativo TFC é um site informativo sobre partidas e classificações de futebol! ⚽️
-
-<details>
-  <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
-  
-  Nesta API foi utilizida a Programação Orientada a Objetos `POO`, e conta com testes que possam cubrir 100% de seu uso
-
-  Esse projeto conta com:
-
-  * Arquitetura em camadas
-  * Teste em camadas
-  * ORM - `Sequelize`
-  * Banco de dados realacional - `MySQL`
-  * Conteinerização - `Docker`
-  * Atenticação - `JWT`
-
-</details>
-# Big Game Survey 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/devsuperior/sds1-wmazoni/blob/master/LICENSE) 
+# Projeto Trybe Futebol Clube 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/FabricioAnastacio/projeto-TrybeFutebolClube/blob/main/LICENSE) 
 
 # Sobre o projeto
 
@@ -33,69 +7,59 @@ Esse é um projeto FullStack desenvolvido utilizando a linguagem TypeScript em c
 
 - Em `BackEnd` foi utilizado `TypeScript`. Minha participação esta composta 100% na pasta _app/backend/src_, os demais arquivos foram desenvovidos pela Trybe.
 - Em `FrontEnd` foi utilizado `JavaScript` e todo o seu desenvolvimento foi feito pela Trybe.
-- Apenas o arquivo `Dockerfile` em ambas foram desenvolvidos por mim. 
+- Apenas o arquivo `Dockerfile` em ambas foram de autoria minha.
 
 O aplicativo TFC é um site informativo sobre partidas e classificações de futebol! ⚽️
 
-## Layout mobile
-![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
-
 ## Layout web
-![Web 1](https://github.com/acenelio/assets/raw/main/sds1/web1.png)
+![Web 1]()
 
-![Web 2](https://github.com/acenelio/assets/raw/main/sds1/web2.png)
+![Web 2]()
 
 ## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
+![Modelo Conceitual]()
 
 # Tecnologias utilizadas
 ## Back end
-- Java
-- Spring Boot
-- JPA / Hibernate
-- Maven
+* Arquitetura em camadas
+* Teste em camadas
+* ORM - `Sequelize`
+* Banco de dados realacional - `MySQL`
+* Conteinerização - `Docker`
+* Atenticação - `JWT`
+
 ## Front end
-- HTML / CSS / JS / TypeScript
-- ReactJS
-- React Native
-- Apex Charts
-- Expo
-## Implantação em produção
-- Back end: Heroku
-- Front end web: Netlify
-- Banco de dados: Postgresql
+- Interamente desenvolvido pela Trybe
 
 # Como executar o projeto
 
 ## Back end
-Pré-requisitos: Java 11
+Pré-requisitos: Node
 
 ```bash
 # clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
+git clone git@github.com:FabricioAnastacio/projeto-TrybeFutebolClube.git
 
 # entrar na pasta do projeto back end
-cd backend
+cd app
 
 # executar o projeto
-./mvnw spring-boot:run
+dokcer compose up -d --build && cd backend && npm run db:reset && cd ..
 ```
 
 ## Front end web
-Pré-requisitos: npm / yarn
+Pré-requisitos: npm
 
 ```bash
-# clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
-
 # entrar na pasta do projeto front end web
-cd front-web
-
-# instalar dependências
-yarn install
+cd frontend
 
 # executar o projeto
-yarn start
+npm start
 ```
 
 # Autor
+
+Fabricio Anastacio Rodrigues
+
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/far-dev/)

@@ -12,9 +12,11 @@ Esse é um projeto FullStack desenvolvido utilizando a linguagem TypeScript em c
 O aplicativo TFC é um site informativo sobre partidas e classificações de futebol! ⚽️
 
 ## Layout web
-![Web 1]()
+![Web 1](./imgs/loginPage.png)
 
-![Web 2]()
+![Web 2](./imgs/classificationPage.png)
+
+![Web 3](./imgs/matchesPages.png)
 
 ## Modelo conceitual
 ![Modelo Conceitual]()
@@ -33,29 +35,28 @@ O aplicativo TFC é um site informativo sobre partidas e classificações de fut
 
 # Como executar o projeto
 
-## Back end
-Pré-requisitos: Node
+Este projeto roda com o Docker então sera necessario apenas alguns comandos para rodar a aplicação com containers:
 
 ```bash
 # clonar repositório
 git clone git@github.com:FabricioAnastacio/projeto-TrybeFutebolClube.git
 
-# entrar na pasta do projeto back end
+# entrar na pasta do projeto
 cd app
 
 # executar o projeto
-dokcer compose up -d --build && cd backend && npm run db:reset && cd ..
+docker compose up -d --build && cd backend && npm run db:reset && cd ..
 ```
+Feito isso a palicação ja vai estar rodando na porta 3000. Podara acessa-la pelo link http://localhost:3000/
 
-## Front end web
-Pré-requisitos: npm
+*Para fechar a aplicação é simples:*
 
 ```bash
-# entrar na pasta do projeto front end web
-cd frontend
+# entrar na pasta do projeto
+cd app
 
-# executar o projeto
-npm start
+# fechar a aplicação
+docker compose down
 ```
 
 # Autor
